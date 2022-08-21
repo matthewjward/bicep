@@ -1,3 +1,5 @@
+@description('The Azure region into which the resources should be deployed.')
+param location string = resourceGroup().location
 
 @description('Generated from /subscriptions/97b128ba-d538-479d-b93c-7b986ec53178/resourceGroups/makemake/providers/Microsoft.Logic/workflows/mysupersampleyo')
 resource mysupersampleyo 'Microsoft.Logic/workflows@2019-05-01' = {
@@ -109,7 +111,7 @@ resource mysupersampleyo 'Microsoft.Logic/workflows@2019-05-01' = {
     }
   }
   name: 'mysupersampleyo'
-  location: 'australiaeast'
+  location: location
   tags: {
   }
 }
