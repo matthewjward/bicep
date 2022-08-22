@@ -1,4 +1,4 @@
-name: deploy-bicep
+name: cleanup
 
 on:
   schedule:
