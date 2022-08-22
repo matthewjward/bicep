@@ -1,6 +1,12 @@
 name: deploy-bicep
 
-on: [workflow_dispatch]
+on: 
+  push:
+    branches:
+      - main
+    workflow_dispatch:
+
+concurrency: bicep
 
 permissions:
   id-token: write
