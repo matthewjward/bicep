@@ -52,6 +52,6 @@ jobs:
         failOnStdErr: false
         deploymentName: ${{ github.run_number }}
         resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
-        template: ./main.bicep
+        template: ./deploy/main.bicep
         
      
