@@ -20,7 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - script: |
+    - name: Run Bicep linter
+      script: |
         az bicep build --file deploy/main.bicep
   validate: 
     runs-on: ubuntu-latest
