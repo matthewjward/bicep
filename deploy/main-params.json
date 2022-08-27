@@ -15,7 +15,7 @@
             "value": "BicepStandardPlan"
         },
         "storageName": {
-            "value": "BicepStaandardStorage"
+            "value": "bicepstandardstorage"
         },
         "kind": {
             "value": "StorageV2"
