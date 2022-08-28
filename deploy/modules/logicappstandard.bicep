@@ -21,6 +21,7 @@ resource storageName_resource 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   tags: {
     Environment: environmentName
     Project: projectName
+    LogicAppName: logicAppName
   }
 }
 
