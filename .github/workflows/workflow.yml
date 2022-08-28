@@ -55,6 +55,7 @@ jobs:
         failOnStdErr: false
         resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
         template: deploy/main.bicep
+        parameters: ./deploy/main-params.json       
         additionalArguments: --what-if
   deploy:
     runs-on: ubuntu-latest
@@ -73,5 +74,7 @@ jobs:
         deploymentName: ${{ github.run_number }}
         resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
         template: ./deploy/main.bicep
+        parameters: ./deploy/main-params.json
+        
         
      
