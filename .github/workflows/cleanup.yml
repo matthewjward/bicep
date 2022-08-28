@@ -26,13 +26,13 @@ jobs:
     - uses: azure/arm-deploy@v1
       with:
         deploymentName: ${{ github.run_number }}
-        resourceGroupName: ${{ env.AUTO_AZURE_RESOURCEGROUP_NAME }}
+        resourceGroupName: ${{ env.MANUAL_AZURE_RESOURCEGROUP_NAME }}
         template: ./clean/clean.bicep
         deploymentMode: complete
     - uses: azure/arm-deploy@v1
       with:
         deploymentName: ${{ github.run_number }}
-        resourceGroupName: ${{ env.MANUAL_AZURE_RESOURCEGROUP_NAME }}
+        resourceGroupName: ${{ env.AUTO_AZURE_RESOURCEGROUP_NAME }}
         template: ./clean/clean.bicep
         deploymentMode: complete
      
