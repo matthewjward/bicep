@@ -41,7 +41,6 @@ resource appServicePlanName_resource 'Microsoft.Web/serverfarms@2022-03-01' = {
   properties: {}
 }
 
-/*
 resource logicAppName_resource 'Microsoft.Web/sites@2018-11-01' = {
   name: logicAppName
   location: location
@@ -124,6 +123,7 @@ resource logicAppName_resource 'Microsoft.Web/sites@2018-11-01' = {
   ]
 }
 
+/*
 output logicAppSystemAssignedIdentityTenantId string = subscription().tenantId
 output logicAppSystemAssignedIdentityObjectId string = reference(logicAppName_resource.id, '2019-08-01', 'full').identity.principalId
 output LAname string = logicAppName 
