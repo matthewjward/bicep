@@ -11,7 +11,7 @@ param storageName string
 param kind string = 'StorageV2'
 param skuName string = 'Standard_LRS'
 
-resource storageName_resource 'Microsoft.Storage/storageAccounts@2019-06-01' = {
+resource storageName_resource 'Microsoft.Storage/storageAccounts@2021-09-01' = {
   sku: {
     name: skuName
   }
@@ -26,7 +26,7 @@ resource storageName_resource 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   }
 }
 
-resource appServicePlanName_resource 'Microsoft.Web/serverfarms@2018-02-01' = {
+resource appServicePlanName_resource 'Microsoft.Web/serverfarms@2022-03-01' = {
   name: appServicePlanName
   location: location
   tags: {
