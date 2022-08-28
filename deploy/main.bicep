@@ -10,7 +10,6 @@ param appServicePlanName string
 param storageName string
 param kind string = 'StorageV2'
 param skuName string = 'Standard_LRS'
-param skuTier string = 'Standard'
 
 module logicAppStandard 'modules/logicappstandard.bicep' = {
   name: 'logicAppStandard'
@@ -23,6 +22,5 @@ module logicAppStandard 'modules/logicappstandard.bicep' = {
     storageName: storageName
     kind: kind
     skuName: skuName
-    skuTier: skuTier
   }
 }
