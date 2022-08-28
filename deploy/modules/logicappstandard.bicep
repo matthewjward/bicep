@@ -91,7 +91,7 @@ resource logicAppName_resource 'Microsoft.Web/sites@2018-11-01' = {
         }
         {
           name: 'WEBSITE_CONTENTSHARE'
-          value: logicAppName
+          value: 'BicepStandard'
         }
         {
           name: 'WEBSITE_NODE_DEFAULT_VERSION'
