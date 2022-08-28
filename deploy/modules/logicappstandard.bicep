@@ -26,7 +26,6 @@ resource storageName_resource 'Microsoft.Storage/storageAccounts@2019-06-01' = {
   }
 }
 
-/*
 resource appServicePlanName_resource 'Microsoft.Web/serverfarms@2018-02-01' = {
   name: appServicePlanName
   location: location
@@ -41,6 +40,7 @@ resource appServicePlanName_resource 'Microsoft.Web/serverfarms@2018-02-01' = {
   kind: 'windows'
 }
 
+/*
 resource logicAppName_resource 'Microsoft.Web/sites@2018-11-01' = {
   name: logicAppName
   location: location
