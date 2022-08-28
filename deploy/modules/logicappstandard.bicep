@@ -38,6 +38,7 @@ resource appServicePlanName_resource 'Microsoft.Web/serverfarms@2022-03-01' = {
     tier: 'WorkflowStandard'
   }
   kind: 'windows'
+  properties: {}
 }
 
 /*
