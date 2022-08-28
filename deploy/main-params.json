@@ -22,9 +22,6 @@
         },
         "skuName": {
             "value": "Standard_LRS"
-        },
-        "skuTier": {
-            "value": "Standard"
-          }
         }
     }
+}
