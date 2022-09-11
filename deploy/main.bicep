@@ -1,7 +1,6 @@
 @description('The Azure region into which the resources should be deployed.')
 param location string = resourceGroup().location
 
-/*
 param environmentName string
 param projectName string
 param logicAppName string
@@ -13,7 +12,7 @@ param storageName string
 param kind string = 'StorageV2'
 param skuName string = 'Standard_LRS'
 
-module logicAppStandard 'modules/logicappstandard.bicep' = {
+module logicAppStandard 'modules/logicappstandard.bicep' = if (false) {
   name: 'logicAppStandard'
   params: {
     location: location
@@ -25,7 +24,7 @@ module logicAppStandard 'modules/logicappstandard.bicep' = {
     kind: kind
     skuName: skuName
   }
-} */
+} 
 
 param serviceBusName string
 module serviceBus 'modules/servicebus.bicep' = {
