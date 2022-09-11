@@ -11,6 +11,9 @@
         "logicAppName": {
             "value": "BicepStandard"
         },
+        "serviceBusName" : {
+            "value": "BicepStandard"
+        },
         "appServicePlanName": {
             "value": "BicepStandardPlan"
         },
