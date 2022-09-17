@@ -26,11 +26,14 @@ module logicAppStandard 'modules/logicappstandard.bicep' = if (false) {
   }
 } 
 
-param serviceBusName string
+param serviceBusNamespaceName string
+param serviceBusQueueName string
+
 module serviceBus 'modules/servicebus.bicep' = {
   name: 'serviceBus'
   params: {
     location: location
-    serviceBusName: serviceBusName
+    serviceBusNamespaceName: serviceBusNamespaceName
+    serviceBusQueueName: serviceBusQueueName
   }
 }
