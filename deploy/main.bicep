@@ -12,7 +12,7 @@ param storageName string
 param kind string = 'StorageV2'
 param skuName string = 'Standard_LRS'
 
-module logicAppStandard 'modules/logicappstandard.bicep' = if (false) {
+module logicAppStandard 'modules/logicappstandard.bicep' = {
   name: 'logicAppStandard'
   params: {
     location: location
