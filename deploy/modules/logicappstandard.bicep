@@ -5,11 +5,22 @@ param projectName string
 param logicAppName string
 param appServicePlanName string
 
+@description('Name of the Service Bus resource that we connect to')
+param serviceBusNamespaceName string
+
+
 @minLength(3)
 @maxLength(24)
 param storageName string
 param kind string = 'StorageV2'
 param skuName string = 'Standard_LRS'
+
+resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2022-01-01-preview' existing = {
+  name: serviceBusNamespaceName
+}
+
+var serviceBusEndpoint = '${serviceBusNamespace.id}/AuthorizationRules/RootManageSharedAccessKey'
+var serviceBusConnectionString = listKeys(serviceBusEndpoint, serviceBusNamespace.apiVersion).primaryConnectionString
 
 resource storageName_resource 'Microsoft.Storage/storageAccounts@2021-09-01' = {
   sku: {
@@ -57,6 +68,10 @@ resource logicAppName_resource 'Microsoft.Web/sites@2018-11-01' = {
     siteConfig: {
       netFrameworkVersion: 'v4.6'
       appSettings: [
+        {
+          name: 'serviceBus_connectionString'
+          value: serviceBusConnectionString
+        }
         {
           name: 'APP_KIND'
           value: 'workflowApp'
@@ -122,6 +137,7 @@ resource logicAppName_resource 'Microsoft.Web/sites@2018-11-01' = {
     storageName_resource
   ]
 }
+
 
 /*
 output logicAppSystemAssignedIdentityTenantId string = subscription().tenantId
