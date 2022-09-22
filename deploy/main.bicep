@@ -12,6 +12,9 @@ param storageName string
 param kind string = 'StorageV2'
 param skuName string = 'Standard_LRS'
 
+param serviceBusNamespaceName string
+param serviceBusQueueName string
+
 module logicAppStandard 'modules/logicappstandard.bicep' = {
   name: 'logicAppStandard'
   params: {
@@ -23,11 +26,9 @@ module logicAppStandard 'modules/logicappstandard.bicep' = {
     storageName: storageName
     kind: kind
     skuName: skuName
+    serviceBusNamespaceName: serviceBusNamespaceName
   }
 } 
-
-param serviceBusNamespaceName string
-param serviceBusQueueName string
 
 module serviceBus 'modules/servicebus.bicep' = {
   name: 'serviceBus'
