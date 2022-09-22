@@ -73,6 +73,10 @@ resource logicAppName_resource 'Microsoft.Web/sites@2018-11-01' = {
           value: serviceBusConnectionString
         }
         {
+          name: 'WEBSITE_RUN_FROM_PACKAGE'
+          value: '1'
+        }
+        {
           name: 'APP_KIND'
           value: 'workflowApp'
         }
