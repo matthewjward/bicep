@@ -1,19 +1,16 @@
 @description('The datacenter to use for the deployment.')
 param location string
-param environmentName string
 param projectName string
 param logicAppName string
 param appServicePlanName string
 
 @description('Name of the Service Bus resource that we connect to')
 param serviceBusNamespaceName string
-
-
-@minLength(3)
-@maxLength(24)
 param storageName string
-param kind string = 'StorageV2'
-param skuName string = 'Standard_LRS'
+
+resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' existing = {
+  name: appServicePlanName
+}
 
 resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2022-01-01-preview' existing = {
   name: serviceBusNamespaceName
@@ -22,35 +19,6 @@ resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2022-01-01-preview
 var serviceBusEndpoint = '${serviceBusNamespace.id}/AuthorizationRules/RootManageSharedAccessKey'
 var serviceBusConnectionString = listKeys(serviceBusEndpoint, serviceBusNamespace.apiVersion).primaryConnectionString
 
-resource storageName_resource 'Microsoft.Storage/storageAccounts@2021-09-01' = {
-  sku: {
-    name: skuName
-  }
-  kind: kind
-  name: storageName
-  location: location
-  tags: {
-    Environment: environmentName
-    Project: projectName
-    LogicAppName: logicAppName
-    AppServicePlanName: appServicePlanName
-  }
-}
-
-resource appServicePlanName_resource 'Microsoft.Web/serverfarms@2022-03-01' = {
-  name: appServicePlanName
-  location: location
-  tags: {
-    Environment: environmentName
-    Project: projectName
-  }
-  sku: {
-    name: 'WS1'
-    tier: 'WorkflowStandard'
-  }
-  kind: 'windows'
-  properties: {}
-}
 
 resource logicAppName_resource 'Microsoft.Web/sites@2018-11-01' = {
   name: logicAppName
@@ -60,11 +28,10 @@ resource logicAppName_resource 'Microsoft.Web/sites@2018-11-01' = {
     type: 'SystemAssigned'
   }
   tags: {
-    Environment: environmentName
     Project: projectName
   }
   properties: {
-    serverFarmId: appServicePlanName_resource.id
+    serverFarmId: appServicePlan.id
     siteConfig: {
       netFrameworkVersion: 'v4.6'
       appSettings: [
@@ -136,10 +103,6 @@ resource logicAppName_resource 'Microsoft.Web/sites@2018-11-01' = {
     }
     clientAffinityEnabled: false
   }
-  dependsOn: [
-
-    storageName_resource
-  ]
 }
 
 
