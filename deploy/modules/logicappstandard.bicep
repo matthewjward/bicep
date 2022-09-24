@@ -6,7 +6,22 @@ param appServicePlanName string
 
 @description('Name of the Service Bus resource that we connect to')
 param serviceBusNamespaceName string
-param storageName string
+
+var storageName = logicAppName
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2021-09-01' = {
+  sku: {
+    name: 'Standard_LRS'
+  }
+  kind: 'StorageV2'
+  name: storageName
+  location: location
+  tags: {
+    Project: projectName
+    AppServicePlanName: appServicePlanName
+  }
+}
+
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' existing = {
   name: appServicePlanName

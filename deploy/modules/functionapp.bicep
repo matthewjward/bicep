@@ -4,7 +4,20 @@ param functionAppName string
 param functionWorkerRuntime string
 param appServicePlanName string
 
-param storageName string
+var storageName = functionAppName
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2021-09-01' = {
+  sku: {
+    name: 'Standard_LRS'
+  }
+  kind: 'StorageV2'
+  name: storageName
+  location: location
+  tags: {
+    Project: projectName
+    AppServicePlanName: appServicePlanName
+  }
+}
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' existing = {
   name: appServicePlanName

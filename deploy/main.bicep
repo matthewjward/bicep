@@ -2,29 +2,26 @@
 param location string = resourceGroup().location
 
 param projectName string
-param appServicePlanName string
-
+param logicAppServicePlanName string
 param logicAppName string
-param functionAppName string
 
-@minLength(3)
-@maxLength(24)
-param storageName string
-param kind string = 'StorageV2'
-param skuName string = 'Standard_LRS'
+param functionAppServicePlanName string
+param functionAppName string
 
 param serviceBusNamespaceName string
 param serviceBusQueueName string
 
-module appServicePlan 'modules/appserviceplan.bicep' = {
-  name: 'appServicePlan'
+module logicAppServicePlan 'modules/appserviceplan.bicep' = {
+  name: 'logicAppServicePlan'
   params: {
     location: location
     projectName: projectName
-    appServicePlanName: appServicePlanName
-    storageName: storageName
-    kind: kind
-    skuName: skuName
+    appServicePlanName: logicAppServicePlanName
+    sku: {
+      name: 'WS1'
+      tier: 'WorkflowStandard'
+    }
+    kind: 'windows'
   }
 } 
 
@@ -34,9 +31,24 @@ module logicAppStandard 'modules/logicappstandard.bicep' = {
     location: location
     projectName: projectName
     logicAppName: logicAppName
-    appServicePlanName: appServicePlanName
-    storageName: storageName
+    appServicePlanName: logicAppServicePlanName
     serviceBusNamespaceName: serviceBusNamespaceName
+  }
+} 
+
+
+module functionAppServicePlan 'modules/appserviceplan.bicep' = {
+  name: 'functionAppServicePlan'
+  params: {
+    location: location
+    projectName: projectName
+    appServicePlanName: functionAppServicePlanName
+    sku: {
+      name: 'EP1'
+      tier: 'ElasticPremium'
+      family: 'EP'
+    }
+    kind: 'elastic'
   }
 } 
 
@@ -45,8 +57,7 @@ module functionApp 'modules/functionapp.bicep' = {
   params: {
     location: location
     projectName: projectName
-    appServicePlanName: appServicePlanName
-    storageName: storageName
+    appServicePlanName: functionAppServicePlanName
     functionAppName: functionAppName
     functionWorkerRuntime: 'dotnet'    
   }

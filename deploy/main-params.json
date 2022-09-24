@@ -5,29 +5,23 @@
         "projectName": {
             "value": "Bicep"
         },
+        "logicAppServicePlanName": {
+            "value": "BicepLogicAppPlan"
+        },
         "logicAppName": {
-            "value": "BicepStandard"
+            "value": "BicepLogicApp"
+        },
+        "functionAppServicePlanName": {
+            "value": "BicepFunctionAppPlan"
         },
         "functionAppName": {
-            "value": "BicepStandard"
+            "value": "BicepFunctionApp"
         },
         "serviceBusNamespaceName" : {
-            "value": "BicepStandard"
+            "value": "BicepServiceBus"
         },
         "serviceBusQueueName" : {
-            "value": "BicepStandardQueue"
-        },
-        "appServicePlanName": {
-            "value": "BicepStandardPlan"
-        },
-        "storageName": {
-            "value": "bicepstandardstorage"
-        },
-        "kind": {
-            "value": "StorageV2"
-        },
-        "skuName": {
-            "value": "Standard_LRS"
+            "value": "BicepServiceBusQueue"
         }
     }
 }
