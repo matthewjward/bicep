@@ -4,7 +4,7 @@ param functionAppName string
 param functionWorkerRuntime string
 param appServicePlanName string
 
-var storageName = functionAppName
+var storageName = toLower(functionAppName)
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-09-01' = {
   sku: {

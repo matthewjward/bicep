@@ -7,7 +7,7 @@ param appServicePlanName string
 @description('Name of the Service Bus resource that we connect to')
 param serviceBusNamespaceName string
 
-var storageName = logicAppName
+var storageName = toLower(logicAppName)
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-09-01' = {
   sku: {
