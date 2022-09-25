@@ -11,6 +11,15 @@ param functionAppName string
 param serviceBusNamespaceName string
 param serviceBusQueueName string
 
+module serviceBus 'modules/servicebus.bicep' = {
+  name: 'serviceBus'
+  params: {
+    location: location
+    serviceBusNamespaceName: serviceBusNamespaceName
+    serviceBusQueueName: serviceBusQueueName
+  }
+}
+
 module logicAppServicePlan 'modules/appserviceplan.bicep' = {
   name: 'logicAppServicePlan'
   params: {
@@ -63,11 +72,3 @@ module functionApp 'modules/functionapp.bicep' = {
   }
 }
 
-module serviceBus 'modules/servicebus.bicep' = {
-  name: 'serviceBus'
-  params: {
-    location: location
-    serviceBusNamespaceName: serviceBusNamespaceName
-    serviceBusQueueName: serviceBusQueueName
-  }
-}
