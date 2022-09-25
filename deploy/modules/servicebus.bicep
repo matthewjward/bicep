@@ -9,7 +9,7 @@ param serviceBusQueueName string
 param location string 
 
 resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2022-01-01-preview' = {
-  name: serviceBusNamespaceName
+  name: '${serviceBusNamespaceName}${uniqueString(resourceGroup().id)}'
   location: location
   sku: {
     name: 'Standard'
