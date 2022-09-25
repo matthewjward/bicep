@@ -28,7 +28,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' existing = {
 }
 
 resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2022-01-01-preview' existing = {
-  name: serviceBusNamespaceName
+  name: '${serviceBusNamespaceName}${uniqueString(resourceGroup().id)}'
 }
 
 var serviceBusEndpoint = '${serviceBusNamespace.id}/AuthorizationRules/RootManageSharedAccessKey'
