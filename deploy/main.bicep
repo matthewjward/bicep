@@ -11,6 +11,16 @@ param functionAppName string
 param serviceBusNamespaceName string
 param serviceBusQueueName string
 
+resource appInsights 'microsoft.insights/components@2015-05-01' = {
+  name: projectName
+  location: location
+  kind: 'web'
+  properties: {
+    Application_Type: 'web'
+    Request_Source: 'rest'
+  }
+}
+
 module serviceBus 'modules/servicebus.bicep' = {
   name: 'serviceBus'
   params: {
@@ -69,6 +79,8 @@ module functionApp 'modules/functionapp.bicep' = {
     appServicePlanName: functionAppServicePlanName
     functionAppName: functionAppName
     functionWorkerRuntime: 'dotnet'    
+    appInsightsName: projectName
+    serviceBusNamespaceName: serviceBusNamespaceName
   }
 }
 
